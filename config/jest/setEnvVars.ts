@@ -1,0 +1,1 @@
+process.env.SECRET_TOKEN = '1234567890'

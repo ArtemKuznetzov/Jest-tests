@@ -46,9 +46,17 @@ export default {
         '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
     ],
     rootDir: '../../',
-    setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
+    setupFilesAfterEnv: [
+        '<rootDir>config/jest/setupTests.ts',
+        '<rootDir>config/jest/setEnvVars.ts',
+        '<rootDir>config/jest/customMatchers.ts'
+    ],
     moduleNameMapper: {
         '\\.s?css$': 'identity-obj-proxy',
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
     },
+    // Один из вариантов объявления глобальной переменной. Можно так, можно в setupTests.ts
+    globals: {
+        __ISDEV__: true
+    }
 };
