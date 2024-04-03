@@ -64,3 +64,14 @@ export const validatePassword = (password: string) => {
 
     return { success: true, error: null }
 }
+
+export const createUser = ({
+    firstName, lastName, phone = '', email = ''
+}: {firstName: string, lastName: string, phone?: string, email?: string}) => ({
+  type: 'USER',
+  firstName,
+  lastName,
+  password: 'password',
+  phone,
+  email
+})
