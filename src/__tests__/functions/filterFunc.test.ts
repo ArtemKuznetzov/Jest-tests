@@ -1,5 +1,5 @@
 import {
-    divideNums, filterArray, multiplyNums, sumNums,
+    divideNums, filterArray, sumNums,
 } from '../../functions/someFunctions';
 import { basketWithNoQuantity, filterBasketWithQuantityOnly } from '../../__mocks__/basket.mock';
 

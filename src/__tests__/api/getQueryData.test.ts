@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API, fetchQuery } from '../../api/getQueryData';
 
 const axiosSpy = jest.spyOn(axios, 'get');
-const errorSpy = jest.spyOn(console, 'error');
+// const errorSpy = jest.spyOn(console, 'error');
 describe('fetchQuery', () => {
     it('fetches successfully data from an API', async () => {
         const data = {

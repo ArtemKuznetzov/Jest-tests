@@ -1,62 +1,27 @@
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-const path = require('path');
+import path from 'path';
+import webpack from 'webpack';
+import { buildWebpackConfig } from './config/build/buildWebpackConfig';
+import { BuildEnv, BuildPaths } from './config/build/types/config';
 
-interface BuildPaths {
-    entry: string
-    build: string
-    html: string
-    src: string
-}
+export default (env: BuildEnv) => {
+    const paths: BuildPaths = {
+        entry: path.resolve(__dirname, 'src', 'index.tsx'),
+        build: path.resolve(__dirname, 'dist'),
+        html: path.resolve(__dirname, 'public', 'index.html'),
+        src: path.resolve(__dirname, 'src'),
+    };
 
-const paths: BuildPaths = {
-    entry: path.resolve(__dirname, 'src', 'index.tsx'),
-    build: path.resolve(__dirname, 'dist'),
-    html: path.resolve(__dirname, 'public', 'index.html'),
-    src: path.resolve(__dirname, 'src'),
-};
+    const mode = env.mode || 'development';
+    const PORT = env.port || 3000;
 
-module.exports = {
-    mode: 'development',
-    entry: './src/index.tsx',
-    devtool: 'inline-source-map',
-    devServer: {
-        port: 3000,
-        open: true,
-        historyApiFallback: true,
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: paths.html,
-        }),
-    ],
-    module: {
-        rules: [
-            {
-                test: /\.(?:js|jsx|tsx)$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            ['@babel/preset-env', { targets: 'defaults' }],
-                        ],
-                    },
-                },
-            },
-            {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: /node_modules/
-            },
-        ]
-    },
-    resolve: {
-        extensions: [ '.tsx', '.ts', '.js' ],
-        preferAbsolute: true,
-        modules: [paths.src, 'node_modules'],
-    },
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
-    }
+    const isDev = mode === 'development';
+
+    const config: webpack.Configuration = buildWebpackConfig({
+        mode,
+        paths,
+        isDev,
+        port: PORT,
+    });
+
+    return config;
 };

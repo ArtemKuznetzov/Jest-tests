@@ -1,10 +1,7 @@
-import { exec } from 'node:child_process';
-import { sumNums } from '../../functions/someFunctions';
-
 const arr = [1, 2, 3];
 const obj = { a: 1 };
-let undefinedValue = undefined;
-let nulLValue = null;
+let undefinedValue: undefined;
+let nulLValue: null = null;
 const trueValue = true;
 
 describe('examples', () => {
