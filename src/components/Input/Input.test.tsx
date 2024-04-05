@@ -1,7 +1,6 @@
 import {screen, render, fireEvent} from '@testing-library/react'
 import {Input} from "components/Input";
-import {Simulate} from "react-dom/test-utils";
-import change = Simulate.change;
+import userEvent from '@testing-library/user-event';
 
 const placeholder = 'test placeholder'
 const onChange = jest.fn()
@@ -66,13 +65,14 @@ describe('Input', () => {
         expect(screen.getByDisplayValue('123')).toBeInTheDocument()
     })
 
-    it('should invoke onChange callback', () => {
+    it('should invoke onChange callback', async () => {
         render(
             <Input onChange={onChange} placeholder={placeholder} value='123' />
         )
         const element = screen.getByPlaceholderText(placeholder)
         // fireEvent позволяет запустить любой валидный элемент, однако это не совсем пользовательское событие
-        fireEvent.change(element, { target: { value: '12345' } } )
+        // fireEvent.change(element, { target: { value: '12345' } } )
+        await userEvent.type(element, '1')
 
         expect(onChange).toHaveBeenCalledTimes(1)
     })
