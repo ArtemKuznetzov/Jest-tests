@@ -7,6 +7,7 @@ module.exports = {
         'plugin:jest/recommended',
         'plugin:react/jsx-runtime',
         'plugin:react-hooks/recommended',
+        'plugin:typescript-eslint/eslint-recommended'
     ],
     ignorePatterns: ['dist', '.eslintrc.cjs'],
     parser: '@typescript-eslint/parser',
@@ -23,4 +24,10 @@ module.exports = {
         'jest/no-focused-tests': 'off',
         'no-unused-vars': 'warn'
     },
+    overrides: [
+        {
+            files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+            extends: ['plugin:testing-library/react'],
+        },
+    ],
 };

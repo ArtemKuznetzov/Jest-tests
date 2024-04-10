@@ -10,3 +10,25 @@ exports[`create user user with first name and last name only 1`] = `
   "type": "USER",
 }
 `;
+
+exports[`create user user with first, last name and email 1`] = `
+{
+  "email": "jhon.stone@mail.ru",
+  "firstName": "Jhon",
+  "lastName": "Stone",
+  "password": "password",
+  "phone": "",
+  "type": "USER",
+}
+`;
+
+exports[`create user user with first, last name and phone 1`] = `
+{
+  "email": "",
+  "firstName": "Jhon",
+  "lastName": "Stone",
+  "password": "password",
+  "phone": "+1-234-567-89-01",
+  "type": "USER",
+}
+`;

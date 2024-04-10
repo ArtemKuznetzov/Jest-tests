@@ -75,3 +75,6 @@ export const createUser = ({
   phone,
   email
 })
+
+export const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+

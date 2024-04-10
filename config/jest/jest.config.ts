@@ -12,6 +12,8 @@ export default {
         'src/**/*.{ts,tsx}',
         '!src/**/index.ts',
         '!src/main.tsx',
+        '!src/app/types/decs.d.ts',
+        '!src/app/types/global.d.ts'
     ],
     coverageDirectory: 'coverage',
     testEnvironment: 'jsdom',
@@ -33,4 +35,7 @@ export default {
     moduleDirectories: [
         'node_modules',
     ],
+    globals: {
+        __ISDEV__: true,
+    },
 };
